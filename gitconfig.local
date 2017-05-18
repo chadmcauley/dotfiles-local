@@ -6,7 +6,7 @@ email = chad.mcauley@gmail.com
 br = branch
 l = log --all --graph --decorage --oneline
 type = cat-file -t
-dump - cat-file -p
+dump = cat-file -p
 hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 fstat = !git fetch && git status
 
