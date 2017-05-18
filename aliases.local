@@ -1,0 +1,95 @@
+# Platform specific
+case "$OSTYPE" in
+  darwin*) # OS X/macOS
+    alias killDS='find . -name *.DS_Store -type f -delete' # remove .DS_Store files
+    alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder' # flush DNS cache
+    alias big='du -ah . | gsort -rh | head -20' # find 20 largest files/directories in current directory
+    alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | gsort-rh | head -n20" # find 20 largest files in current directory
+    alias ds='du -hs * | gsort -rh' # find biggest file/directory in current directory
+    alias ls='ls -GAFh' # colorized output, hidden directories, human readable sizes, append / to directories, * to executables, and @ to symlinks
+    command -v md5sum > /dev/null || alias md5sum="md5" # OS X has no `md5sum`, use `md5` as fallback
+    command -v sha1sum > /dev/null || alias sha1sum="shasum" # OS X has no `sha1sum`, use `shasum` as fallback
+    ;;
+  linux*)
+    alias big='du -ah . | sort -rh | head -20' # find 20 largest files/directories in current directory
+    alias big-files='ls -`Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -rh | head -n20' # find 20 largest files in current directory
+    alias ds='du -ks * | sort -rn" # find biggest file/directory in current directory
+    alias ls='ls -AFh --color' # colorized output, hidden directories, human readable sizes, append / to directories, * to executables, and @ to symlinks
+    ;;
+  *)
+    echo "Unknown: OSTYPE"
+    ;;
+esac
+
+# Generic
+alias cp='cp -iv' # interactive and verbose
+alias mv='mv -iv' # interactive and verbose
+alias rm='rm -iv' # interactive and verbose
+alias mkdir='mkdir -p -v' # create missing parents and verbose
+alias freq='cut -f1 -d" " ~/.zhistory | sort | uniq -c | sort -nr | head -n 30" # find frequently used commands (which may be candidates for aliases)
+alias netlisten='lsof -i -P | grep LISTEN' # active network listeners
+alias extip='dig +short myip.opendns.com @resolver1.opendns.com' # get external IP address
+alias tmux='tmux -2 -u' # force 256 colors and UTF-8
+alias grep='grep --color=auto' # automatic colors
+
+# Shell Functions
+
+# Go _u_p to the specified directory OR number of levels
+u() {
+  if [-z "$1" ]
+  then
+    cd ..
+  elif echo "$1" | grep -q '[0-9]\+'
+  then
+    cd "$(pwd | gawk 'BEGIN{FS=OFS="/"}NF>'$1'{NF-='$1'}NF==1{print"/"}NF>1')"
+  else
+    cd "$(pwd | gawk 'BEGIN{FS=OFS="/"}{for(i=NF;i>1;i--){if($i ~ "'$1'"){NF=i;break}}}1')"
+  fi
+  pwd
+}
+
+# Go _d_own to the specified directory name
+d() {
+  cd $(find . -type d -name "$1" -print -quit 2>/dev/null)
+  pwd
+}
+
+# Create new directory and cd into it
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+# Open man pages in Vim
+vman() {
+  vim -c "SumerMan $*"
+
+  if [ "$?' != "0" ]; then
+    echo "No manual entry for $*"
+  fi
+}
+
+# Extract archive based on file type
+extract() {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2) tar xjf $1 ;;
+      *.tar.gz) tar xzf $1 ;;
+      *.bz2) bunzip2 $1 ;;
+      *.rar) rar x $1 ;;
+      *.gz) gunzip $1 ;;
+      *.tar) tar xf $1 ;;
+      *.tbz2) tar xjf $1 ;;
+      *.tgz) tar xzf $1 ;;
+      *.zip) unzip $1 ;;
+      *.Z) uncompress $1
+      *.7z) 7z x $1 ;;
+      *) echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+
+# show all lines of stdout or file and highlight matches
+highlight() {
+  ack --passthru --color "$1" "$2"
+}
