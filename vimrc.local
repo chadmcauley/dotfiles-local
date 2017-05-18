@@ -9,7 +9,7 @@ set ignorecase
 
 " colorscheme
 colorscheme base16-tomorrow
-set background=dark
+let base16colorspace=256
 
 " Syntastic recommended settings for new users
 set statusline+=%#warningmsg#
