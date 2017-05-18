@@ -12,7 +12,7 @@ colorscheme base16-tomorrow
 set background=dark
 
 " Syntastic recommended settings for new users
-set statusline +=%"warningmsg#
+set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
