@@ -12,7 +12,7 @@ case "$OSTYPE" in
     ;;
   linux*)
     alias big='du -ah . | sort -rh | head -20' # find 20 largest files/directories in current directory
-    alias big-files='ls -`Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -rh | head -n20' # find 20 largest files in current directory
+    alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -rh | head -n20' # find 20 largest files in current directory
     alias ds='du -ks * | sort -rn" # find biggest file/directory in current directory
     alias ls='ls -AFh --color' # colorized output, hidden directories, human readable sizes, append / to directories, * to executables, and @ to symlinks
     ;;
@@ -61,7 +61,7 @@ mkcd() {
 
 # Open man pages in Vim
 vman() {
-  vim -c "SumerMan $*"
+  vim -c "SuperMan $*"
 
   if [ "$?' != "0" ]; then
     echo "No manual entry for $*"
