@@ -1,0 +1,15 @@
+[user]
+name = Chad McAuley
+email = chad.mcauley@gmail.com
+
+[alias]
+br = branch
+l = log --all --graph --decorage --oneline
+type = cat-file -t
+dump - cat-file -p
+hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+fstat = !git fetch && git status
+
+[core]
+safecrlf = true
+editor = vim
