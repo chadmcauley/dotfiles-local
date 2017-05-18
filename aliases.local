@@ -4,7 +4,7 @@ case "$OSTYPE" in
     alias killDS='find . -name *.DS_Store -type f -delete' # remove .DS_Store files
     alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder' # flush DNS cache
     alias big='du -ah . | gsort -rh | head -20' # find 20 largest files/directories in current directory
-    alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | gsort-rh | head -n20" # find 20 largest files in current directory
+    alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | gsort-rh | head -n20' # find 20 largest files in current directory
     alias ds='du -hs * | gsort -rh' # find biggest file/directory in current directory
     alias ls='ls -GAFh' # colorized output, hidden directories, human readable sizes, append / to directories, * to executables, and @ to symlinks
     command -v md5sum > /dev/null || alias md5sum="md5" # OS X has no `md5sum`, use `md5` as fallback
