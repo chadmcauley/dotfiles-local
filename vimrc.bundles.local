@@ -16,7 +16,7 @@ UnPlug 'vim-javascript'
 " Don't install vim-slim
 UnPlug 'vim-slim'
 " Don't install vim-projectionist
-UnPlug 'tpope/vim-projectionist'
+UnPlug 'vim-projectionist'
 
 " Color scheme(s) 
 Plug 'chriskempson/base16-vim'
