@@ -1,0 +1,37 @@
+# Don't install Ruby/Rails plugins 
+UnPlug 'vim-rails'
+UnPlug 'vim-bundler'
+UnPlug 'vim-endwise'
+UnPlug 'vim-rake'
+UnPlug 'vim-ruby'
+
+# Don't install vim-elixir
+Unplug 'vim-elixir'
+# Don't install vim-test
+UnPLug 'vim-test'
+# Don't install vim-coffee-script
+UnPlug 'vim-coffee-script'
+# Don't install vim-javascript
+UnPLug 'vim-javascript'
+# Don't install vim-slim
+UnPlug 'vim-slim'
+# Don't install vim-projectionist
+Unplug 'tpope/vim-projectionist'
+
+# Color scheme(s) 
+Plug 'chriskempson/base16-vim'
+Plug 'nightsense/vim-crunchbang'
+Plug 'w0ng/vim-hybrid'
+
+# Fancy statusline
+Plug 'vim-airline/vim-airline'
+
+# Fuzzy Finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+
+# Open man pages in Vim
+Plug 'jez/vim-superman'
+
+`
+
+
