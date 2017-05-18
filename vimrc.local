@@ -8,7 +8,7 @@ set hlsearch
 set ignorecase
 
 " colorscheme
-colorscheme=base16-tomorrow
+colorscheme base16-tomorrow
 set background=dark
 
 " Syntastic recommended settings for new users
