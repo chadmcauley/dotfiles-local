@@ -1,0 +1,5 @@
+# Reload config without killing server
+bind R source-file ~/.tmux.conf \; display-message " Config reloaded..."
+
+# Launch SSH session in new window
+bind-key S command-prompt -p ssh: "new-window -n %1 'ssh %1'"
