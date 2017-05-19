@@ -4,4 +4,8 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # fzf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#
+
+# load keychain at startup
+if hash keychain 2>/dev/null; then
+  eval `keychain --eval --agents ssh id_ed25519`
+fi
